@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BackLogModelStoreContainer" CdmEntityContainer="BackLogEntities">
+    <EntitySetMapping Name="TBL_JIRA_ITEMS">
+      <EntityTypeMapping TypeName="BackLogModel.TBL_JIRA_ITEMS">
+        <MappingFragment StoreEntitySet="TBL_JIRA_ITEMS">
+          <ScalarProperty Name="JiraID" ColumnName="JiraID" />
+          <ScalarProperty Name="Application" ColumnName="Application" />
+          <ScalarProperty Name="Module" ColumnName="Module" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EstimatedBy" ColumnName="EstimatedBy" />
+          <ScalarProperty Name="PlannedBundle" ColumnName="PlannedBundle" />
+          <ScalarProperty Name="Developer" ColumnName="Developer" />
+          <ScalarProperty Name="Reviewer" ColumnName="Reviewer" />
+          <ScalarProperty Name="Tester" ColumnName="Tester" />
+          <ScalarProperty Name="Analysis" ColumnName="Analysis" />
+          <ScalarProperty Name="Coding" ColumnName="Coding" />
+          <ScalarProperty Name="UnitTesting" ColumnName="UnitTesting" />
+          <ScalarProperty Name="DeveloperEffort" ColumnName="DeveloperEffort" />
+          <ScalarProperty Name="LeadEffort" ColumnName="LeadEffort" />
+          <ScalarProperty Name="DevEstimatedEffort" ColumnName="DevEstimatedEffort" />
+          <ScalarProperty Name="QAEstimatedEffort" ColumnName="QAEstimatedEffort" />
+          <ScalarProperty Name="TotalEffort" ColumnName="TotalEffort" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

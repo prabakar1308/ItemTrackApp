@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="utf-8" />
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/Smart-Table-master/dist/smart-table.js"></script>
+    <script src="scripts/App.js"></script>
+    <script src="controllers/ItemsTracking.js"></script>
+</head>
+<body ng-app="Tracking">
+    <div ng-controller="TrackingController">
+        <table st-table="rowCollection" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Application</th>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in rowCollection">
+                    <td>{{row.JiraID}}</td>
+                    <td>{{row.Application}}</td>
+                    <td>
+                        {{row.Title}}
+                    </td>
+                </tr>
+            </tbody>
+</table>
+
+     </div>
+</body>
+</html>

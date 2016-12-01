@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BackLogModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TBL_JIRA_ITEMS">
+    <Key>
+      <PropertyRef Name="JiraID" />
+      <PropertyRef Name="Application" />
+      <PropertyRef Name="Module" />
+      <PropertyRef Name="Priority" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="JiraID" Type="String" MaxLength="9" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Application" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Module" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Priority" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EstimatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PlannedBundle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Developer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Reviewer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tester" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Analysis" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Coding" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="UnitTesting" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DeveloperEffort" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="LeadEffort" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DevEstimatedEffort" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="QAEstimatedEffort" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TotalEffort" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityContainer Name="BackLogEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TBL_JIRA_ITEMS" EntityType="Self.TBL_JIRA_ITEMS" />
+  </EntityContainer>
+</Schema>
