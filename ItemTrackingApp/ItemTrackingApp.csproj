@@ -67,9 +67,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="controllers\ItemsTracking.js" />
+    <Content Include="controllers\UpdateItems.js" />
     <Content Include="Index.html" />
+    <Content Include="node_modules\angular-route\angular-route.js" />
+    <Content Include="node_modules\angular-route\angular-route.min.js" />
+    <Content Include="node_modules\angular-route\index.js" />
     <Content Include="node_modules\angular\angular.js" />
     <Content Include="node_modules\angular\angular.min.js" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\css\bootstrap.css" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\css\bootstrap.min.css" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\js\bootstrap.js" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\js\bootstrap.min.js" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\js\npm.js" />
     <Content Include="node_modules\Smart-Table-master\dist\smart-table.js" />
     <Content Include="node_modules\Smart-Table-master\dist\smart-table.min.js" />
     <Content Include="node_modules\Smart-Table-master\gulpFile.js" />
@@ -102,6 +114,19 @@
     <Content Include="node_modules\Smart-Table-master\ISSUE_TEMPLATE.md" />
     <Content Include="node_modules\Smart-Table-master\package.json" />
     <Content Include="node_modules\Smart-Table-master\readme.md" />
+    <Content Include="node_modules\angular-route\angular-route.min.js.map" />
+    <Content Include="node_modules\angular-route\bower.json" />
+    <Content Include="node_modules\angular-route\LICENSE.md" />
+    <Content Include="node_modules\angular-route\package.json" />
+    <Content Include="node_modules\angular-route\README.md" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\css\bootstrap-theme.css.map" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\css\bootstrap.css.map" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\css\bootstrap.min.css.map" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="node_modules\bootstrap-3.3.7-dist\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -111,14 +136,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="scripts\App.js" />
+    <Content Include="views\ItemsTracking.html" />
+    <Content Include="views\UpdateItems.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="views\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

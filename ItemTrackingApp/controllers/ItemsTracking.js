@@ -1,6 +1,10 @@
-﻿Tracking.controller('TrackingController', function ($scope, TrackingService) {
+﻿Tracking.controller('TrackingController', function ($scope, TrackingService,$location) {
 
     getItems();
+
+    $scope.Update = function () {
+        $location.path('/updateItem');
+    }
 
     function getItems() {
         TrackingService.getItems()
