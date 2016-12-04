@@ -82,19 +82,21 @@
         modalInstance.result.then(function (result) {
             console.log(result);
         });
-    }
+    }    
 
-    $scope.QAEffort = function (row) {
+    $scope.updateItem = function (row, buttonName) {
         var modalInstance = $uibModal.open({
-            templateUrl: 'QAEffort.html',
-            controller: 'QAEffortCtrl',
+            templateUrl: 'UpdateItem.html',
+            controller: 'UpdateItemCtrl',
             size: 'lg',
             resolve: {
-                item: function () {
+                data: function () {
                     return row;
                 }
             }
         });
+
+        modalInstance.buttonName = buttonName;
 
         modalInstance.result.then(function (result) {
             console.log(result);

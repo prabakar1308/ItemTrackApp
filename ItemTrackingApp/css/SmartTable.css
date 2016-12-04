@@ -27,6 +27,6 @@
     padding: 2px;
 }
 
-.st-selected {
-background-color: #ffd800;
+.st-selected td {
+    background-color: #d3e7ed;
 }

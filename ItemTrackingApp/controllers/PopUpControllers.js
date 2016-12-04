@@ -1,23 +1,27 @@
 ﻿Tracking.controller('DeveloperEffortCtrl', function ($scope, $uibModalInstance, item) {
 
-    console.log(item);
     $scope.dev = {};
-    $scope.dev.jiraId = item.JiraID;
-    $scope.dev.analysis = item.Analysis;
-    $scope.dev.coding = item.Coding;
-    $scope.dev.testing = item.UnitTesting;
-    //$scope.devEffort = item.DeveloperEffort;
-    $scope.dev.devEffort = ($scope.dev.analysis + $scope.dev.coding + $scope.dev.testing);
-    $scope.dev.leadEffort = item.LeadEffort;
-    //$scope.devEstimated = item.DevEstimatedEffort;
-    $scope.dev.devEstimated = ($scope.dev.devEffort + $scope.dev.leadEffort);
 
-    $scope.$watchGroup(['dev.analysis', 'dev.coding', 'dev.testing', 'dev.devEffort', 'dev.leadEffort'], function () {
+    if (item !== undefined && item !== null) {
+        $scope.dev.jiraId = item.JiraID;
+        $scope.dev.analysis = item.Analysis;
+        $scope.dev.coding = item.Coding;
+        $scope.dev.testing = item.UnitTesting;
+        //$scope.devEffort = item.DeveloperEffort;
+        $scope.dev.devEffort = ($scope.dev.analysis + $scope.dev.coding + $scope.dev.testing);
+        $scope.dev.leadEffort = item.LeadEffort;
+        //$scope.devEstimated = item.DevEstimatedEffort;
+        $scope.dev.devEstimated = ($scope.dev.devEffort + $scope.dev.leadEffort);
+        $scope.dev.qaEffort = item.QAEstimatedEffort;
+        $scope.dev.totalEffort = ($scope.dev.devEstimated + $scope.dev.qaEffort);
+
+    }
+
+    $scope.$watchGroup(['dev.analysis', 'dev.coding', 'dev.testing', 'dev.devEffort', 'dev.leadEffort', 'dev.qaEffort'], function () {
         $scope.dev.devEffort = ($scope.dev.analysis + $scope.dev.coding + $scope.dev.testing);
         $scope.dev.devEstimated = ($scope.dev.devEffort + $scope.dev.leadEffort);
+        $scope.dev.totalEffort = ($scope.dev.devEstimated + $scope.dev.qaEffort);
     });
-
-    console.log($scope.dev);
 
     $scope.save = function () {
         $uibModalInstance.close($scope.dev);
@@ -28,32 +32,35 @@
     };
 });
 
-Tracking.controller('QAEffortCtrl', function ($scope, $uibModalInstance, item) {
 
-    console.log(item);
-    $scope.dev = {};
-    $scope.dev.jiraId = item.JiraID;
-    $scope.dev.analysis = item.Analysis;
-    $scope.dev.coding = item.Coding;
-    $scope.dev.testing = item.UnitTesting;
-    //$scope.devEffort = item.DeveloperEffort;
-    $scope.dev.devEffort = ($scope.dev.analysis + $scope.dev.coding + $scope.dev.testing);
-    $scope.dev.leadEffort = item.LeadEffort;
-    //$scope.devEstimated = item.DevEstimatedEffort;
-    $scope.dev.devEstimated = ($scope.dev.devEffort + $scope.dev.leadEffort);
+Tracking.controller('UpdateItemCtrl', function ($scope, $uibModalInstance, data) {
 
-    $scope.$watchGroup(['dev.analysis', 'dev.coding', 'dev.testing', 'dev.devEffort', 'dev.leadEffort'], function () {
-        $scope.dev.devEffort = ($scope.dev.analysis + $scope.dev.coding + $scope.dev.testing);
-        $scope.dev.devEstimated = ($scope.dev.devEffort + $scope.dev.leadEffort);
-    });
+    $scope.item = {};
+    if (data !== undefined && data !== null) {
+        $scope.item.jiraID = data.JiraID;
+        $scope.item.application = data.Application;
+        $scope.item.module = data.Module;
+        $scope.item.priority = data.Priority;
+        $scope.item.bundle = data.PlannedBundle;
 
-    console.log($scope.dev);
+
+        $scope.item.title = data.Title;
+        $scope.item.developer = data.Developer;
+        $scope.item.tester = data.Tester;
+        $scope.item.status = data.Status;
+    }
+
+    $scope.buttonName = $uibModalInstance.buttonName;
+    $scope.BundleItems = ['Bundle 1', 'Bundle 2', 'Bundle 3'];
+    $scope.PriorityItems = ['P1', 'P2', 'P3'];
+    $scope.Status = ['Analysis', 'To Be Estimated', 'Estimated','Development','Unit Testing','Verification','Integration Testing','Regression Testing','UAT','Production Test'];
 
     $scope.save = function () {
-        $uibModalInstance.close($scope.dev);
+        $uibModalInstance.close($scope.item);
     };
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
 });
+
