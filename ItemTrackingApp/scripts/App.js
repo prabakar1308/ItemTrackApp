@@ -1,12 +1,34 @@
-﻿var Tracking = angular.module('Tracking', ['ngRoute','smart-table']);
+﻿var Tracking = angular.module('Tracking', ['ngRoute', 'smart-table', 'ui.bootstrap']);
 
 Tracking.factory('TrackingService', ['$http',function ($http) {
 
     var urlBase = 'http://localhost:56886/api/';
     var TrackingService = {};
-    TrackingService.getItems = function () {
-        return $http.get(urlBase + 'ItemTracking');
+
+    TrackingService.getReleases = function () {
+        return $http.get(urlBase + 'RetrieveData/getReleases');
     };
+
+    TrackingService.getTracks = function () {
+        return $http.get(urlBase + 'RetrieveData/getTracks');
+    };
+
+    TrackingService.getItemsByRelease = function (trackId) {
+        return $http.get(urlBase + 'RetrieveData/getJiraItemsByByRelease/' + trackId);
+    };
+
+    TrackingService.getItemsByTrack = function (trackId) {
+        return $http.get(urlBase + 'RetrieveData/getJiraItemsByTrack/' + trackId);
+    };
+
+    TrackingService.getItems = function (releaseId,trackId,releaseFilter,trackFilter) {
+        return $http.get(urlBase + 'RetrieveData/getJiraItems/' + releaseId + '/' + trackId+ '/' +releaseFilter+ '/'+trackFilter);
+    };
+
+    TrackingService.getAllItems = function (trackId) {
+        return $http.get(urlBase + 'RetrieveData/getAllJiraItems/' + trackId);
+    };
+
 
     return TrackingService;
 }]);
@@ -21,7 +43,5 @@ Tracking.config(function ($routeProvider) {
         templateUrl: 'views/UpdateItems.html',
         controller: 'UpdateItemsController'
     })
-    .otherwise({
-        template: "<h1>None</h1><p>Nothing has been selected,</p>"
-    });
+    .otherwise('/');
 });

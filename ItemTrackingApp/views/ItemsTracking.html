@@ -1,0 +1,110 @@
+﻿<div id="ItemGrid">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Select your track and release to proceed !!!</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label>Release : </label>
+                        <select ng-model="selectedRelease" ng-options="x.ReleaseName for x in Releases"></select>
+                        <input type="checkbox" ng-model="releaseFilter" ng-change="ReleaseFilterChanged()" style="margin-left:10px;">Include Release<br>
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Track : </label>
+                        <select ng-model="selectedTrack" ng-options="x.TrackName for x in Tracks"></select>
+                        <input type="checkbox" ng-model="trackFilter" ng-change="TrackFilterChanged()" style="margin-left:10px;">Include Track<br>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-success" ng-click="GetItems()" style="margin-left:30px;">Show Items</button>
+                        <button type="button" class="btn btn-danger" ng-click="ClearFilters()" style="margin-left:50px;">Clear Filters</button>
+                    </div>
+                    </div>
+            </div>
+        </div>
+        <!--<div class="col-sm-1"></div>-->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="row">
+                    <p class="col-sm-9">Backlog Item Details</p>
+                    <p class="col-sm-3 pull-right">Sort Items by ID, Priority & Bundle Columns</p>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-12">
+                    <div class="table-container">
+                        <table st-table="data" st-safe-src="rowCollection" class="table table-striped table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th colspan="9"></th>
+                                    <th colspan="4">
+                                        <input st-search placeholder="search..." class="input-sm form-control" type="search" />
+                                    </th>
+                                </tr>
+                                <tr style="padding-top:150px;">
+                                    <th st-sort="JiraID"><a>ID</a></th>
+                                    <th><a>Application</a></th>
+                                    <th><a>Module</a></th>
+                                    <th st-sort="Priority"><a>Priority</a></th>
+                                    <th st-sort="PlannedBundle"><a>Bundle</a></th>
+                                    <th><a>Title</a></th>
+                                    <th><a>Status</a></th>
+                                    <th><a>Dev Owner</a></th>
+                                    <th><a>QA Owner</a></th>
+                                    <th><a>Dev Effort</a></th>
+                                    <th><a>QA Effort</a></th>
+                                    <th><a>Edit</a></th>
+                                    <th><a>Remove</a></th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in data" ng-click="selectRow(row)" st-select-row="row" st-select-mode="single">
+                                    <td>{{row.JiraID}}</td>
+                                    <td>{{row.Application}}</td>
+                                    <td>{{row.Module}}</td>
+                                    <td>{{row.Priority}}</td>
+                                    <td>{{row.PlannedBundle}}</td>
+                                    <td>{{row.Title}}</td>
+                                    <td>{{row.Status}}</td>
+                                    <td>{{row.Developer}}</td>
+                                    <td>{{row.Tester}}</td>
+                                    <td>
+                                        <button type="button" ng-click="developerEffort(row)" class="btn btn-sm btn-primary">
+                                            <i class="glyphicon glyphicon-cog">
+                                            </i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" ng-click="QAEffort(row)" class="btn btn-sm btn-info">
+                                            <i class="glyphicon glyphicon-cog">
+                                            </i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" ng-click="editItem(row)" class="btn btn-sm btn-warning">
+                                            <i class="glyphicon glyphicon-edit">
+                                            </i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+                                            <i class="glyphicon glyphicon-remove-circle">
+                                            </i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td class="text-center" st-pagination="" st-items-by-page="10" colspan="4"></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <!--<input type="button" value="Locate" ng-click="Update()" />-->
+                        <!--</div><div class="col-sm-1"></div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>

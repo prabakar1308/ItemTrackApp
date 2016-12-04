@@ -1,0 +1,32 @@
+﻿.st-sort-ascent:before{
+    content: '\25B2';
+}
+
+.st-sort-descent:before{
+    content: '\25BC';
+}
+
+#ItemGrid{
+    margin-left:50px;
+    margin-right:50px;
+}
+
+#tableHeader {
+    width: 100%;
+}
+
+.table-container {
+    width: 100%;
+    overflow-y: scroll;
+    white-space: nowrap;
+    font-size: small;
+    align-items: stretch;
+}
+
+.table-condensed > tbody > tr > td {
+    padding: 2px;
+}
+
+.st-selected {
+background-color: #ffd800;
+}

@@ -1,0 +1,16 @@
+﻿.container-fluid {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color:rgba(0, 0, 0, 0.05);
+}
+
+.container-fluid h3{
+        margin-top:10px;
+}
+
+
+/*Added for label in modal pop up*/
+
+.modal-body label{
+    width:150px;
+}
