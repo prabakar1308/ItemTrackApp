@@ -208,7 +208,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ItemTrackingController.cs" />
+    <Compile Include="Controllers\RetrieveItemsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -232,6 +232,15 @@
       <DependentUpon>ItemDetails.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\TBL_JIRA_ITEMS.cs">
+      <DependentUpon>ItemDetails.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL_RELEASE.cs">
+      <DependentUpon>ItemDetails.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL_TEAM.cs">
+      <DependentUpon>ItemDetails.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL_TRACK.cs">
       <DependentUpon>ItemDetails.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

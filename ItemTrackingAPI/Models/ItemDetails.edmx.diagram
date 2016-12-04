@@ -5,7 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6de432ee810744519651840240856648" Name="Diagram1">
-        <EntityTypeShape EntityType="BackLogModel.TBL_JIRA_ITEMS" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BackLogModel.TBL_JIRA_ITEMS" Width="1.5" PointX="3" PointY="1.875" />
+        <EntityTypeShape EntityType="BackLogModel.TBL_RELEASE" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BackLogModel.TBL_TRACK" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BackLogModel.TBL_TEAM" Width="1.5" PointX="5.75" PointY="1.5" />
+        <AssociationConnector Association="BackLogModel.FK_TBL_JIRA_ITEMS_TBL_RELEASE" />
+        <AssociationConnector Association="BackLogModel.FK_TBL_JIRA_ITEMS_TBL_TRACK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
