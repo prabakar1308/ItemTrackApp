@@ -1,4 +1,4 @@
-﻿var Tracking = angular.module('Tracking', ['ngRoute', 'smart-table', 'ui.bootstrap']);
+﻿var Tracking = angular.module('Tracking', ['ngRoute', 'smart-table', 'ui.bootstrap', 'ui.grid']);
 
 Tracking.factory('TrackingService', ['$http',function ($http) {
 
@@ -40,8 +40,8 @@ Tracking.config(function ($routeProvider) {
         controller: 'TrackingController'
     })
     .when("/updateItem", {
-        templateUrl: 'views/UpdateItems.html',
-        controller: 'UpdateItemsController'
+        templateUrl: 'views/ImportItems.html',
+        controller: 'ImportItemsController'
     })
     .otherwise('/');
 });

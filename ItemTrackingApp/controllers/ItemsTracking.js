@@ -102,4 +102,8 @@
             console.log(result);
         });
     }
+
+    $scope.ImportExcel = function () {
+        $location.path('/updateItem');
+    }
 });

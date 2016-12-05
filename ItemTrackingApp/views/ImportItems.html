@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <div>
+        
+        <button type="button" class="btn btn-success pull-right" ng-click="GoToHome()"  style="margin-right:15px;"><i class="glyphicon glyphicon-home"></i> Home</button>
+        <br />
+        <br /><br />
+        <div id="grid1" ui-grid="gridOptions" class="grid">
+            <div class="grid-msg-overlay" ng-show="!gridOptions.data.length">
+                <div class="msg">
+                    <div class="center">
+                        <span class="muted">Select Spreadsheet File</span>
+                        <br />
+                        <input type="file" accept=".xls,.xlsx,.ods" fileread="" opts="gridOptions" multiple="false" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="pull-right"  style="margin-right:15px;">
+            <button type="button" class="btn btn-warning" ng-click="Reset()"  style="margin-right:5px;">Reset Grid</button>
+            <button type="button" class="btn btn-info" ng-click="SaveItems()">Save Items</button>
+        </div>
+    </div>
+</body>
+</html>
