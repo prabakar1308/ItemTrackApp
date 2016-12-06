@@ -7,7 +7,7 @@
         $scope.dev.analysis = item.Analysis;
         $scope.dev.coding = item.Coding;
         $scope.dev.testing = item.UnitTesting;
-        //$scope.devEffort = item.DeveloperEffort;
+        $scope.dev.estimatedBy = item.EstimatedBy;
         $scope.dev.devEffort = ($scope.dev.analysis + $scope.dev.coding + $scope.dev.testing);
         $scope.dev.leadEffort = item.LeadEffort;
         //$scope.devEstimated = item.DevEstimatedEffort;

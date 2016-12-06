@@ -72,6 +72,7 @@
     <Content Include="controllers\ImportItems.js" />
     <Content Include="css\Menu.css" />
     <Content Include="css\SmartTable.css" />
+    <Content Include="excel_files\xlsx.full.min.js" />
     <Content Include="images\MenuBg.jpg" />
     <Content Include="Index.html" />
     <Content Include="node_modules\angular-bootstrap-checkbox\angular-bootstrap-checkbox.js" />
@@ -764,6 +765,8 @@
     <Content Include="node_modules\Smart-Table-master\test\spec\stSelectRow.spec.js" />
     <Content Include="node_modules\Smart-Table-master\test\spec\stSort.spec.js" />
     <Content Include="node_modules\Smart-Table-master\test\spec\stTable.spec.js" />
+    <Content Include="node_modules\ui-grid\ui-grid.min.css" />
+    <Content Include="node_modules\ui-grid\ui-grid.min.js" />
     <Content Include="packages.config" />
     <Content Include="node_modules\Smart-Table-master\.gitignore" />
     <Content Include="node_modules\Smart-Table-master\.travis.yml" />
@@ -1025,6 +1028,7 @@
     <Content Include="node_modules\grunt\node_modules\which\README.md" />
     <Content Include="node_modules\grunt\package.json" />
     <Content Include="node_modules\grunt\README.md" />
+    <Content Include="node_modules\ui-grid\package.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

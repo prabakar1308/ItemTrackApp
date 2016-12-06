@@ -11,6 +11,10 @@
 
 /*Added for label in modal pop up*/
 
+.modal-header label{
+    width:150px;
+}
+
 .modal-body label{
     width:150px;
 }
