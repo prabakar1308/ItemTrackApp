@@ -11,6 +11,11 @@
         <EntityTypeShape EntityType="BackLogModel.TBL_TEAM" Width="1.5" PointX="5.75" PointY="1.5" />
         <AssociationConnector Association="BackLogModel.FK_TBL_JIRA_ITEMS_TBL_RELEASE" />
         <AssociationConnector Association="BackLogModel.FK_TBL_JIRA_ITEMS_TBL_TRACK" />
+        <EntityTypeShape EntityType="BackLogModel.TBK_DEV_STATUS" Width="1.5" PointX="8.375" PointY="0.875" />
+        <EntityTypeShape EntityType="BackLogModel.TBL_QA_STATUS" Width="1.5" PointX="5.375" PointY="6.125" />
+        <EntityTypeShape EntityType="BackLogModel.TBL_QA_DETAILS" Width="1.5" PointX="7.625" PointY="5" />
+        <AssociationConnector Association="BackLogModel.FK_TBL_JIRA_ITEMS_TBK_DEV_STATUS" />
+        <AssociationConnector Association="BackLogModel.FK_TBL_QA_DETAILS_TBL_QA_STATUS" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

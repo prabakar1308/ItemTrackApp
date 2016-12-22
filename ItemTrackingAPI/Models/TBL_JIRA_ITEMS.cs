@@ -66,6 +66,8 @@ public partial class TBL_JIRA_ITEMS
 
     public virtual TBL_TRACK TBL_TRACK { get; set; }
 
+    public virtual TBK_DEV_STATUS TBK_DEV_STATUS { get; set; }
+
 }
 
 }

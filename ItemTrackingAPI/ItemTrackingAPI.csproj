@@ -231,7 +231,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ItemDetails.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TBK_DEV_STATUS.cs">
+      <DependentUpon>ItemDetails.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TBL_JIRA_ITEMS.cs">
+      <DependentUpon>ItemDetails.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL_QA_DETAILS.cs">
+      <DependentUpon>ItemDetails.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TBL_QA_STATUS.cs">
       <DependentUpon>ItemDetails.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TBL_RELEASE.cs">
@@ -293,6 +302,7 @@
     <Content Include="Models\ItemDetails.edmx.diagram">
       <DependentUpon>ItemDetails.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\TrackingApp.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

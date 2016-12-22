@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BackLogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TBK_DEV_STATUS">
+          <Key>
+            <PropertyRef Name="StatusCode" />
+          </Key>
+          <Property Name="StatusCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="TBL_JIRA_ITEMS">
           <Key>
             <PropertyRef Name="JiraID" />
@@ -16,7 +23,7 @@
           <Property Name="Module" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Priority" Type="nvarchar" MaxLength="2" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="EstimatedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="PlannedBundle" Type="nvarchar" MaxLength="50" />
           <Property Name="Developer" Type="nvarchar" MaxLength="50" />
@@ -31,6 +38,33 @@
           <Property Name="QAEstimatedEffort" Type="numeric" Precision="18" Scale="2" />
           <Property Name="TotalEffort" Type="numeric" Precision="18" Scale="2" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BackLog.dbo.TBL_QA_DETAILS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="TBL_QA_DETAILS">
+          <Key>
+            <PropertyRef Name="JiraID" />
+          </Key>
+          <Property Name="JiraID" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="QAStatus" Type="nvarchar" MaxLength="5" />
+          <Property Name="Validation" Type="nvarchar" MaxLength="50" />
+          <Property Name="TestReadyDate" Type="datetime" />
+          <Property Name="TestStartedDate" Type="datetime" />
+          <Property Name="TestCompletedDate" Type="datetime" />
+          <Property Name="TestedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rounds" Type="int" />
+          <Property Name="Defects" Type="int" />
+          <Property Name="TestCasePassed" Type="int" />
+          <Property Name="TestCaseFailed" Type="int" />
+          <Property Name="ActualHours" Type="int" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="TBL_QA_STATUS">
+          <Key>
+            <PropertyRef Name="StatusCode" />
+          </Key>
+          <Property Name="StatusCode" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="TBL_RELEASE">
           <Key>
             <PropertyRef Name="ReleaseID" />
@@ -39,7 +73,7 @@
           <Property Name="ReleaseName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'Backlog.dbo.TBL_TEAM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'BackLog.dbo.TBL_TEAM' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="TBL_TEAM">
           <Key>
             <PropertyRef Name="EmployeeID" />
@@ -58,6 +92,18 @@ warning 6002: The table/view 'Backlog.dbo.TBL_TEAM' does not have a primary key 
           <Property Name="TrackID" Type="int" Nullable="false" />
           <Property Name="TrackName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <Association Name="FK_TBL_JIRA_ITEMS_TBK_DEV_STATUS">
+          <End Role="TBK_DEV_STATUS" Type="Self.TBK_DEV_STATUS" Multiplicity="1" />
+          <End Role="TBL_JIRA_ITEMS" Type="Self.TBL_JIRA_ITEMS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBK_DEV_STATUS">
+              <PropertyRef Name="StatusCode" />
+            </Principal>
+            <Dependent Role="TBL_JIRA_ITEMS">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TBL_JIRA_ITEMS_TBL_RELEASE">
           <End Role="TBL_RELEASE" Type="Self.TBL_RELEASE" Multiplicity="0..1" />
           <End Role="TBL_JIRA_ITEMS" Type="Self.TBL_JIRA_ITEMS" Multiplicity="*" />
@@ -82,10 +128,41 @@ warning 6002: The table/view 'Backlog.dbo.TBL_TEAM' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TBL_QA_DETAILS_TBL_QA_STATUS">
+          <End Role="TBL_QA_STATUS" Type="Self.TBL_QA_STATUS" Multiplicity="0..1" />
+          <End Role="TBL_QA_DETAILS" Type="Self.TBL_QA_DETAILS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_QA_STATUS">
+              <PropertyRef Name="StatusCode" />
+            </Principal>
+            <Dependent Role="TBL_QA_DETAILS">
+              <PropertyRef Name="QAStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="BackLogModelStoreContainer">
+          <EntitySet Name="TBK_DEV_STATUS" EntityType="Self.TBK_DEV_STATUS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_JIRA_ITEMS" EntityType="Self.TBL_JIRA_ITEMS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_QA_STATUS" EntityType="Self.TBL_QA_STATUS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_RELEASE" EntityType="Self.TBL_RELEASE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TBL_TRACK" EntityType="Self.TBL_TRACK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_QA_DETAILS" EntityType="Self.TBL_QA_DETAILS" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TBL_QA_DETAILS].[JiraID] AS [JiraID], 
+    [TBL_QA_DETAILS].[QAStatus] AS [QAStatus], 
+    [TBL_QA_DETAILS].[Validation] AS [Validation], 
+    [TBL_QA_DETAILS].[TestReadyDate] AS [TestReadyDate], 
+    [TBL_QA_DETAILS].[TestStartedDate] AS [TestStartedDate], 
+    [TBL_QA_DETAILS].[TestCompletedDate] AS [TestCompletedDate], 
+    [TBL_QA_DETAILS].[TestedBy] AS [TestedBy], 
+    [TBL_QA_DETAILS].[Rounds] AS [Rounds], 
+    [TBL_QA_DETAILS].[Defects] AS [Defects], 
+    [TBL_QA_DETAILS].[TestCasePassed] AS [TestCasePassed], 
+    [TBL_QA_DETAILS].[TestCaseFailed] AS [TestCaseFailed], 
+    [TBL_QA_DETAILS].[ActualHours] AS [ActualHours], 
+    [TBL_QA_DETAILS].[Comments] AS [Comments]
+    FROM [dbo].[TBL_QA_DETAILS] AS [TBL_QA_DETAILS]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="TBL_TEAM" EntityType="Self.TBL_TEAM" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [TBL_TEAM].[EmployeeID] AS [EmployeeID], 
@@ -94,6 +171,10 @@ warning 6002: The table/view 'Backlog.dbo.TBL_TEAM' does not have a primary key 
     [TBL_TEAM].[IsAdmin] AS [IsAdmin]
     FROM [dbo].[TBL_TEAM] AS [TBL_TEAM]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_TBL_JIRA_ITEMS_TBK_DEV_STATUS" Association="Self.FK_TBL_JIRA_ITEMS_TBK_DEV_STATUS">
+            <End Role="TBK_DEV_STATUS" EntitySet="TBK_DEV_STATUS" />
+            <End Role="TBL_JIRA_ITEMS" EntitySet="TBL_JIRA_ITEMS" />
+          </AssociationSet>
           <AssociationSet Name="FK_TBL_JIRA_ITEMS_TBL_RELEASE" Association="Self.FK_TBL_JIRA_ITEMS_TBL_RELEASE">
             <End Role="TBL_RELEASE" EntitySet="TBL_RELEASE" />
             <End Role="TBL_JIRA_ITEMS" EntitySet="TBL_JIRA_ITEMS" />
@@ -101,6 +182,10 @@ warning 6002: The table/view 'Backlog.dbo.TBL_TEAM' does not have a primary key 
           <AssociationSet Name="FK_TBL_JIRA_ITEMS_TBL_TRACK" Association="Self.FK_TBL_JIRA_ITEMS_TBL_TRACK">
             <End Role="TBL_TRACK" EntitySet="TBL_TRACK" />
             <End Role="TBL_JIRA_ITEMS" EntitySet="TBL_JIRA_ITEMS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_QA_DETAILS_TBL_QA_STATUS" Association="Self.FK_TBL_QA_DETAILS_TBL_QA_STATUS">
+            <End Role="TBL_QA_STATUS" EntitySet="TBL_QA_STATUS" />
+            <End Role="TBL_QA_DETAILS" EntitySet="TBL_QA_DETAILS" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -120,6 +205,17 @@ warning 6002: The table/view 'Backlog.dbo.TBL_TEAM' does not have a primary key 
             <End Role="TBL_TRACK" EntitySet="TBL_TRACK" />
             <End Role="TBL_JIRA_ITEMS" EntitySet="TBL_JIRA_ITEMS" />
           </AssociationSet>
+          <EntitySet Name="TBK_DEV_STATUS" EntityType="BackLogModel.TBK_DEV_STATUS" />
+          <EntitySet Name="TBL_QA_STATUS" EntityType="BackLogModel.TBL_QA_STATUS" />
+          <EntitySet Name="TBL_QA_DETAILS" EntityType="BackLogModel.TBL_QA_DETAILS" />
+          <AssociationSet Name="FK_TBL_JIRA_ITEMS_TBK_DEV_STATUS" Association="BackLogModel.FK_TBL_JIRA_ITEMS_TBK_DEV_STATUS">
+            <End Role="TBK_DEV_STATUS" EntitySet="TBK_DEV_STATUS" />
+            <End Role="TBL_JIRA_ITEMS" EntitySet="TBL_JIRA_ITEMS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TBL_QA_DETAILS_TBL_QA_STATUS" Association="BackLogModel.FK_TBL_QA_DETAILS_TBL_QA_STATUS">
+            <End Role="TBL_QA_STATUS" EntitySet="TBL_QA_STATUS" />
+            <End Role="TBL_QA_DETAILS" EntitySet="TBL_QA_DETAILS" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="TBL_JIRA_ITEMS">
           <Key>
@@ -132,7 +228,7 @@ warning 6002: The table/view 'Backlog.dbo.TBL_TEAM' does not have a primary key 
           <Property Name="Module" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Priority" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="EstimatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PlannedBundle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Developer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -148,6 +244,7 @@ warning 6002: The table/view 'Backlog.dbo.TBL_TEAM' does not have a primary key 
           <Property Name="TotalEffort" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="TBL_RELEASE" Relationship="BackLogModel.FK_TBL_JIRA_ITEMS_TBL_RELEASE" FromRole="TBL_JIRA_ITEMS" ToRole="TBL_RELEASE" />
           <NavigationProperty Name="TBL_TRACK" Relationship="BackLogModel.FK_TBL_JIRA_ITEMS_TBL_TRACK" FromRole="TBL_JIRA_ITEMS" ToRole="TBL_TRACK" />
+          <NavigationProperty Name="TBK_DEV_STATUS" Relationship="BackLogModel.FK_TBL_JIRA_ITEMS_TBK_DEV_STATUS" FromRole="TBL_JIRA_ITEMS" ToRole="TBK_DEV_STATUS" />
         </EntityType>
         <EntityType Name="TBL_RELEASE">
           <Key>
@@ -197,6 +294,65 @@ warning 6002: The table/view 'Backlog.dbo.TBL_TEAM' does not have a primary key 
             </Principal>
             <Dependent Role="TBL_JIRA_ITEMS">
               <PropertyRef Name="TrackID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBK_DEV_STATUS">
+          <Key>
+            <PropertyRef Name="StatusCode" />
+          </Key>
+          <Property Name="StatusCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_JIRA_ITEMS" Relationship="BackLogModel.FK_TBL_JIRA_ITEMS_TBK_DEV_STATUS" FromRole="TBK_DEV_STATUS" ToRole="TBL_JIRA_ITEMS" />
+        </EntityType>
+        <EntityType Name="TBL_QA_STATUS">
+          <Key>
+            <PropertyRef Name="StatusCode" />
+          </Key>
+          <Property Name="StatusCode" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_QA_DETAILS" Relationship="BackLogModel.FK_TBL_QA_DETAILS_TBL_QA_STATUS" FromRole="TBL_QA_STATUS" ToRole="TBL_QA_DETAILS" />
+        </EntityType>
+        <EntityType Name="TBL_QA_DETAILS">
+          <Key>
+            <PropertyRef Name="JiraID" />
+          </Key>
+          <Property Name="JiraID" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Name="QAStatus" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="Validation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TestReadyDate" Type="DateTime" Precision="3" />
+          <Property Name="TestStartedDate" Type="DateTime" Precision="3" />
+          <Property Name="TestCompletedDate" Type="DateTime" Precision="3" />
+          <Property Name="TestedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rounds" Type="Int32" />
+          <Property Name="Defects" Type="Int32" />
+          <Property Name="TestCasePassed" Type="Int32" />
+          <Property Name="TestCaseFailed" Type="Int32" />
+          <Property Name="ActualHours" Type="Int32" />
+          <Property Name="Comments" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_QA_STATUS" Relationship="BackLogModel.FK_TBL_QA_DETAILS_TBL_QA_STATUS" FromRole="TBL_QA_DETAILS" ToRole="TBL_QA_STATUS" />
+        </EntityType>
+        <Association Name="FK_TBL_JIRA_ITEMS_TBK_DEV_STATUS">
+          <End Type="BackLogModel.TBK_DEV_STATUS" Role="TBK_DEV_STATUS" Multiplicity="1" />
+          <End Type="BackLogModel.TBL_JIRA_ITEMS" Role="TBL_JIRA_ITEMS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBK_DEV_STATUS">
+              <PropertyRef Name="StatusCode" />
+            </Principal>
+            <Dependent Role="TBL_JIRA_ITEMS">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TBL_QA_DETAILS_TBL_QA_STATUS">
+          <End Type="BackLogModel.TBL_QA_STATUS" Role="TBL_QA_STATUS" Multiplicity="0..1" />
+          <End Type="BackLogModel.TBL_QA_DETAILS" Role="TBL_QA_DETAILS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_QA_STATUS">
+              <PropertyRef Name="StatusCode" />
+            </Principal>
+            <Dependent Role="TBL_QA_DETAILS">
+              <PropertyRef Name="QAStatus" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -256,6 +412,41 @@ warning 6002: The table/view 'Backlog.dbo.TBL_TEAM' does not have a primary key 
                 <ScalarProperty Name="TrackID" ColumnName="TrackID" />
                 <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBK_DEV_STATUS">
+            <EntityTypeMapping TypeName="BackLogModel.TBK_DEV_STATUS">
+              <MappingFragment StoreEntitySet="TBK_DEV_STATUS">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_QA_STATUS">
+            <EntityTypeMapping TypeName="BackLogModel.TBL_QA_STATUS">
+              <MappingFragment StoreEntitySet="TBL_QA_STATUS">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_QA_DETAILS">
+            <EntityTypeMapping TypeName="BackLogModel.TBL_QA_DETAILS">
+              <MappingFragment StoreEntitySet="TBL_QA_DETAILS">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ActualHours" ColumnName="ActualHours" />
+                <ScalarProperty Name="TestCaseFailed" ColumnName="TestCaseFailed" />
+                <ScalarProperty Name="TestCasePassed" ColumnName="TestCasePassed" />
+                <ScalarProperty Name="Defects" ColumnName="Defects" />
+                <ScalarProperty Name="Rounds" ColumnName="Rounds" />
+                <ScalarProperty Name="TestedBy" ColumnName="TestedBy" />
+                <ScalarProperty Name="TestCompletedDate" ColumnName="TestCompletedDate" />
+                <ScalarProperty Name="TestStartedDate" ColumnName="TestStartedDate" />
+                <ScalarProperty Name="TestReadyDate" ColumnName="TestReadyDate" />
+                <ScalarProperty Name="Validation" ColumnName="Validation" />
+                <ScalarProperty Name="QAStatus" ColumnName="QAStatus" />
+                <ScalarProperty Name="JiraID" ColumnName="JiraID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

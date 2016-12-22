@@ -62,6 +62,42 @@ namespace ItemTrackingAPI.Controllers
         }
 
         [HttpGet]
+        [Route("getQADetails/{jiraId}")]
+        [ResponseType(typeof(List<TBL_JIRA_ITEMS>))]
+        public IHttpActionResult GetQADetails(string jiraId)
+        {
+           // List<TBL_JIRA_ITEMS> items = null;
+
+            var items = (from c in db.TBL_QA_DETAILS
+                         join e in db.TBK_DEV_STATUS
+                             on c.QAStatus equals e.StatusCode
+                         where c.JiraID == jiraId
+                         select new
+                         {
+                             JiraId = c.JiraID,
+                             QAStatus = e.Status,
+                             Validation = e.Status,
+                             TestReadyDate = c.TestReadyDate,
+                             TestStartedDate = c.TestStartedDate,
+                             TestCompletedDate = c.TestCompletedDate,
+                             TestedBy = c.TestedBy,
+                             Rounds = c.Rounds,
+                             Defects = c.Defects,
+                             TestCasePassed = c.TestCasePassed,
+                             TestCaseFailed = c.TestCaseFailed,
+                             ActualHours = c.ActualHours,
+                             Comments = c.Comments
+                         }).ToList();
+
+            if (items == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(items);
+        }
+
+        [HttpGet]
         [Route("getReleases")]
         public IQueryable<TBL_RELEASE> GetReleases()
         {

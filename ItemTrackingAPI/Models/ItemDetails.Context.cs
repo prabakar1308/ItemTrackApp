@@ -40,6 +40,12 @@ public partial class BackLogEntities : DbContext
 
     public virtual DbSet<TBL_TEAM> TBL_TEAM { get; set; }
 
+    public virtual DbSet<TBK_DEV_STATUS> TBK_DEV_STATUS { get; set; }
+
+    public virtual DbSet<TBL_QA_STATUS> TBL_QA_STATUS { get; set; }
+
+    public virtual DbSet<TBL_QA_DETAILS> TBL_QA_DETAILS { get; set; }
+
 }
 
 }
