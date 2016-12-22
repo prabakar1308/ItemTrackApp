@@ -29,6 +29,10 @@ Tracking.factory('TrackingService', ['$http',function ($http) {
         return $http.get(urlBase + 'RetrieveData/getAllJiraItems/' + trackId);
     };
 
+    TrackingService.getQAStatus = function (jiraId) {
+        return $http.get(urlBase + 'RetrieveData/getQADetails/' + jiraId);
+    };
+
 
     return TrackingService;
 }]);

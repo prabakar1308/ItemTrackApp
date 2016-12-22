@@ -2,6 +2,7 @@
 
     $scope.releaseFilter = true;
     $scope.trackFilter = true;
+    $scope.enableQAStatus = true;
     getReleases();  
 
     $scope.Update = function () {
@@ -42,6 +43,23 @@
             });
     }
 
+    function openQAStatus() {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'QAEffort.html',
+            controller: 'QAEffortCtrl',
+            size: 'lg',
+            resolve: {
+                item: function () {
+                    return $scope.QAStatus;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (result) {
+            console.log(result);
+        });
+    }
+
     $scope.GetItems = function () {
 
         TrackingService.getItems($scope.selectedRelease.ReleaseID, $scope.selectedTrack.TrackID, $scope.releaseFilter, $scope.trackFilter)
@@ -58,13 +76,28 @@
                 });
     }
 
+    $scope.GetQAStatus = function () {
+
+        TrackingService.getQAStatus($scope.JiraID)
+            .success(function (items) {
+                $scope.QAStatus = items;
+                openQAStatus();
+
+            })
+                .error(function (error) {
+                    alert(error);
+
+                });
+    }
+
     $scope.ClearFilters = function () {
         $scope.releaseFilter = false;
         $scope.trackFilter = false;
     }
 
     $scope.selectRow = function (row) {
-        console.log(row);
+        $scope.enableQAStatus = false;
+        $scope.JiraID = row.JiraID;
     }
 
     $scope.developerEffort = function (row) {
