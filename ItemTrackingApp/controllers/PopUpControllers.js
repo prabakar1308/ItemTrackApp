@@ -32,10 +32,12 @@
     };
 });
 
-Tracking.controller('QAEffortCtrl', function ($scope, $uibModalInstance, item) {
+Tracking.controller('QAEffortCtrl', function ($scope, $uibModalInstance, item,team) {
 
     $scope.qa = {};
-    console.log(item[0]);
+
+    console.log('teamtest');
+    console.log(team);
 
     if (item[0] !== undefined && item[0] !== null) {
         $scope.qa.jiraId = item[0].JiraId;
@@ -48,11 +50,16 @@ Tracking.controller('QAEffortCtrl', function ($scope, $uibModalInstance, item) {
         $scope.qa.testCompletedDate = item[0].TestCompletedDate;
         $scope.qa.releasedDate = item[0].TestReadyDate;
         $scope.qa.testStartedDate = item[0].TestStartedDate;
-        $scope.qa.testedBy = item[0].TestedBy;
+        //$scope.qa.testedBy = item[0].TestedBy;
         $scope.qa.defects = item[0].Defects;
         $scope.qa.actualHours = item[0].ActualHours;
         $scope.qa.comments = item[0].Comments;
 
+    }
+
+    if (team !== undefined && team !== null) {
+        $scope.teamDetails = team;
+        $scope.qa.testedBy = 'M1022169dew';
     }
 
     $scope.save = function () {

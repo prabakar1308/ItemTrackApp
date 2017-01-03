@@ -1,9 +1,10 @@
-﻿Tracking.controller('TrackingController', function ($scope, TrackingService, $location, $uibModal) {
+﻿Tracking.controller('TrackingController', function ($scope, $rootScope, TrackingService, $location, $filter, $uibModal) {
 
     $scope.releaseFilter = true;
     $scope.trackFilter = true;
     $scope.enableQAStatus = true;
-    getReleases();  
+    getTeamDetails();
+    getReleases();    
 
     $scope.Update = function () {
         $location.path('/updateItem');
@@ -15,6 +16,18 @@
 
     $scope.TrackFilterChanged = function () {
         $scope.trackFilter != $scope.trackFilter;
+    }
+
+    function getTeamDetails() {
+        TrackingService.getTeamDetails().success(function (items) {
+            console.log('team');
+            console.log(items);
+            $scope.TeamDetails = items;
+        })
+            .error(function (error) {
+                alert(error);
+
+            });
     }
 
     function getReleases() {
@@ -44,6 +57,11 @@
     }
 
     function openQAStatus() {
+
+        var result = $filter('filter')($scope.TeamDetails, 'Java Track');
+
+        console.log(result);
+
         var modalInstance = $uibModal.open({
             templateUrl: 'QAEffort.html',
             controller: 'QAEffortCtrl',
@@ -51,6 +69,9 @@
             resolve: {
                 item: function () {
                     return $scope.QAStatus;
+                },
+                team: function () {
+                    return result;
                 }
             }
         });

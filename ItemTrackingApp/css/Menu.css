@@ -19,6 +19,10 @@
     width:150px;
 }
 
+.modal-body select{
+    width:174px;
+}
+
 .modal-body textarea{
         width: 180px;
     height: 75px;

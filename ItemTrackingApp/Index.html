@@ -50,8 +50,7 @@
                     <h3 class="modal-title">Estimation !</h3>
                     </div>
                 <div class="col-sm-5">
-                    <label>Estimated By</label>
-                    <input type="text" ng-model="dev.estimatedBy" />
+                    
                 </div>
                 <div class="col-sm-1"></div>
                 </div>
@@ -78,11 +77,13 @@
                             <label>QA Effort</label>
                             <input type="number" ng-model="dev.qaEffort" /><br /><br />
                             <label>Total Effort</label>
-                            <input type="number" ng-model="dev.totalEffort" ng-disabled="true" /><br /><br />
+                            <input type="number" ng-model="dev.totalEffort" ng-disabled="true" /><br /><br /><br />
+                            <label>Estimated By</label>
+                            <input type="text" ng-model="dev.estimatedBy" />
                         </div>
                         <div class="col-sm-1"></div>
                     </div>
-                </div>
+                </div><br />
                 <div class="modal-footer">
                     <button class="btn btn-primary" type="button" ng-click="save()">Save</button>
                     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
@@ -97,8 +98,7 @@
                     <h3 class="modal-title">QA Status !</h3>
                 </div>
                 <div class="col-sm-5">
-                    <label>Tested By</label>
-                    <input type="text" ng-model="qa.testedBy" />
+                    
                 </div>
                 <div class="col-sm-1"></div>
             </div>
@@ -131,8 +131,18 @@
                     <label>Test cases failed</label>
                     <input type="number" ng-model="qa.testCaseFailed" /><br /><br />
                 </div>
+                <div class="col-sm-1"></div>              
+            </div><br />
+            <div class="row">
                 <div class="col-sm-1"></div>
-            </div>
+                <div class="col-sm-5"></div>
+                <div class="col-sm-5">
+                    <label>Tested By</label>
+                    <select ng-model="qa.testedBy" ng-options="x.EmployeeID as x.EmployeeName for x in teamDetails"></select><br /><br />
+                    <!--<input type="text" ng-model="qa.testedBy" />-->
+                </div>
+                <div class="col-sm-1"></div>
+            </div><br />
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="save()">Save</button>

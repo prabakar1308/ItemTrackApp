@@ -5,6 +5,10 @@ Tracking.factory('TrackingService', ['$http',function ($http) {
     var urlBase = 'http://localhost:56886/api/';
     var TrackingService = {};
 
+    TrackingService.getTeamDetails = function () {
+        return $http.get(urlBase + 'RetrieveData/getTeamDetails');
+    };
+
     TrackingService.getReleases = function () {
         return $http.get(urlBase + 'RetrieveData/getReleases');
     };
