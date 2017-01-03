@@ -15,10 +15,10 @@ namespace ItemTrackingAPI.Controllers
     [RoutePrefix("api/RetrieveData")]
     public class RetrieveItemsController : ApiController
     {
-        private BackLogEntities db;
+        private BacklogEntities db;
         public RetrieveItemsController()
         {
-            db = new BackLogEntities();
+            db = new BacklogEntities();
             db.Configuration.ProxyCreationEnabled = false;
         }
 
@@ -40,7 +40,31 @@ namespace ItemTrackingAPI.Controllers
             List<TBL_JIRA_ITEMS> items = null;
             if (releaseFilter && trackFilter)
             {
-                items = db.TBL_JIRA_ITEMS.Where(a => (a.ReleaseID == releaseId) && (a.TrackID == trackId)).ToList();
+               items = (from c in db.TBL_JIRA_ITEMS
+                             where c.ReleaseID == releaseId && c.TrackID == trackId
+                             select new {
+                                 JiraID = c.JiraID,
+                                 ReleaseID = c.ReleaseID,
+                                 TrackID = c.TrackID,
+                                 Application = c.Application,
+                                 Module = c.Module,
+                                 Priority = c.Priority,
+                                 Title = c.Title,
+                                 Status = c.Status,
+                                 EstimatedBy = c.TBL_TEAM.EmployeeName,
+                                 PlannedBundle = c.PlannedBundle,
+                                 Developer = c.TBL_TEAM1.EmployeeName,
+                                 Reviewer = c.TBL_TEAM2.EmployeeName,
+                                 Tester = c.TBL_TEAM3.EmployeeName,
+                                 Analysis = c.Analysis,
+                                 Coding = c.Coding,
+                                 UnitTesting = c.UnitTesting,
+                                 DeveloperEffort = c.DeveloperEffort,
+                                 LeadEffort = c.LeadEffort,
+                                 DevEstimatedEffort = c.DevEstimatedEffort,
+                                 QAEstimatedEffort = c.QAEstimatedEffort,
+                                 TotalEffort = c.TotalEffort
+                             }).ToList<TBL_JIRA_ITEMS>();
             }
             else if (!releaseFilter && trackFilter) {
                 items = db.TBL_JIRA_ITEMS.Where(a => a.TrackID == trackId).ToList();
@@ -87,6 +111,32 @@ namespace ItemTrackingAPI.Controllers
                              TestCaseFailed = c.TestCaseFailed,
                              ActualHours = c.ActualHours,
                              Comments = c.Comments
+                         }).ToList();
+
+            if (items == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(items);
+        }
+
+        [HttpGet]
+        [Route("getTeamDetails")]
+        [ResponseType(typeof(List<TBL_TEAM>))]
+        public IHttpActionResult GetTeamDetails()
+        {
+            // List<TBL_JIRA_ITEMS> items = null;
+
+            var items = (from c in db.TBL_TEAM
+                         join e in db.TBL_TRACK
+                             on c.TrackID equals e.TrackID
+                         select new
+                         {
+                             EmployeeID = c.EmployeeID,
+                             EmployeeName = c.EmployeeName,
+                             Track = e.TrackName,
+                             IsAdmin = c.IsAdmin
                          }).ToList();
 
             if (items == null)

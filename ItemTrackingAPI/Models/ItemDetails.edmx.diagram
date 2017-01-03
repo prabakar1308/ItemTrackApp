@@ -4,18 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6de432ee810744519651840240856648" Name="Diagram1">
-        <EntityTypeShape EntityType="BackLogModel.TBL_JIRA_ITEMS" Width="1.5" PointX="3" PointY="1.875" />
-        <EntityTypeShape EntityType="BackLogModel.TBL_RELEASE" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BackLogModel.TBL_TRACK" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="BackLogModel.TBL_TEAM" Width="1.5" PointX="5.75" PointY="1.5" />
-        <AssociationConnector Association="BackLogModel.FK_TBL_JIRA_ITEMS_TBL_RELEASE" />
-        <AssociationConnector Association="BackLogModel.FK_TBL_JIRA_ITEMS_TBL_TRACK" />
-        <EntityTypeShape EntityType="BackLogModel.TBK_DEV_STATUS" Width="1.5" PointX="8.375" PointY="0.875" />
-        <EntityTypeShape EntityType="BackLogModel.TBL_QA_STATUS" Width="1.5" PointX="5.375" PointY="6.125" />
-        <EntityTypeShape EntityType="BackLogModel.TBL_QA_DETAILS" Width="1.5" PointX="7.625" PointY="5" />
-        <AssociationConnector Association="BackLogModel.FK_TBL_JIRA_ITEMS_TBK_DEV_STATUS" />
-        <AssociationConnector Association="BackLogModel.FK_TBL_QA_DETAILS_TBL_QA_STATUS" />
+      <Diagram DiagramId="dd34960f5f7e4bf8b8893abaab599ff8" Name="Diagram1">
+        <EntityTypeShape EntityType="BacklogModel.TBK_DEV_STATUS" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BacklogModel.TBL_JIRA_ITEMS" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BacklogModel.TBL_QA_STATUS" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BacklogModel.TBL_RELEASE" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BacklogModel.TBL_TEAM" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BacklogModel.TBL_TRACK" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BacklogModel.TBL_QA_DETAILS" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="BacklogModel.FK_TBL_JIRA_ITEMS_TBK_DEV_STATUS" ManuallyRouted="false" />
+        <AssociationConnector Association="BacklogModel.FK_TBL_JIRA_ITEMS_TBL_RELEASE" ManuallyRouted="false" />
+        <AssociationConnector Association="BacklogModel.FK_TBL_JIRA_ITEMS_TBL_TEAM" ManuallyRouted="false" />
+        <AssociationConnector Association="BacklogModel.FK_TBL_JIRA_ITEMS_TBL_TEAM1" ManuallyRouted="false" />
+        <AssociationConnector Association="BacklogModel.FK_TBL_JIRA_ITEMS_TBL_TEAM2" ManuallyRouted="false" />
+        <AssociationConnector Association="BacklogModel.FK_TBL_JIRA_ITEMS_TBL_TEAM3" ManuallyRouted="false" />
+        <AssociationConnector Association="BacklogModel.FK_TBL_JIRA_ITEMS_TBL_TRACK" ManuallyRouted="false" />
+        <AssociationConnector Association="BacklogModel.FK_TBL_QA_DETAILS_TBL_QA_STATUS" ManuallyRouted="false" />
+        <AssociationConnector Association="BacklogModel.FK_TBL_QA_DETAILS_TBL_TEAM" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
