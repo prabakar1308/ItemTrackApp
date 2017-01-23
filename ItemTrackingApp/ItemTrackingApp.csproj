@@ -70,6 +70,7 @@
     <Content Include="controllers\ItemsTracking.js" />
     <Content Include="controllers\PopUpControllers.js" />
     <Content Include="controllers\ImportItems.js" />
+    <Content Include="css\datepicker.css" />
     <Content Include="css\Menu.css" />
     <Content Include="css\SmartTable.css" />
     <Content Include="excel_files\xlsx.full.min.js" />
@@ -289,6 +290,31 @@
     <Content Include="node_modules\angular-ui-bootstrap\template\typeahead\typeahead-match.html.js" />
     <Content Include="node_modules\angular-ui-bootstrap\template\typeahead\typeahead-popup.html" />
     <Content Include="node_modules\angular-ui-bootstrap\template\typeahead\typeahead-popup.html.js" />
+    <Content Include="node_modules\angularjs-datepicker\assets\js\index.js" />
+    <Content Include="node_modules\angularjs-datepicker\dist\angular-datepicker.min.css" />
+    <Content Include="node_modules\angularjs-datepicker\dist\angular-datepicker.min.js" />
+    <Content Include="node_modules\angularjs-datepicker\Gruntfile.js" />
+    <Content Include="node_modules\angularjs-datepicker\index.html" />
+    <Content Include="node_modules\angularjs-datepicker\index.js" />
+    <Content Include="node_modules\angularjs-datepicker\src\css\angular-datepicker.css" />
+    <Content Include="node_modules\angularjs-datepicker\src\js\angular-datepicker.js" />
+    <Content Include="node_modules\angularjs-datepicker\tasks\concurrent.js" />
+    <Content Include="node_modules\angularjs-datepicker\tasks\confs.js" />
+    <Content Include="node_modules\angularjs-datepicker\tasks\connect.js" />
+    <Content Include="node_modules\angularjs-datepicker\tasks\csslint.js" />
+    <Content Include="node_modules\angularjs-datepicker\tasks\cssmin.js" />
+    <Content Include="node_modules\angularjs-datepicker\tasks\eslint.js" />
+    <Content Include="node_modules\angularjs-datepicker\tasks\jscs.js" />
+    <Content Include="node_modules\angularjs-datepicker\tasks\uglify.js" />
+    <Content Include="node_modules\angularjs-datepicker\tasks\watch.js" />
+    <Content Include="node_modules\angularjs-datepicker\twitter-bootstrap.html" />
+    <Content Include="node_modules\angularjs-datepicker\ui-bootstrap\assets\js\index.js" />
+    <Content Include="node_modules\angularjs-datepicker\ui-bootstrap\index.html" />
+    <Content Include="node_modules\angularjs-datepicker\ui-bootstrap\template\datepicker\datepicker.html" />
+    <Content Include="node_modules\angularjs-datepicker\ui-bootstrap\template\datepicker\day.html" />
+    <Content Include="node_modules\angularjs-datepicker\ui-bootstrap\template\datepicker\month.html" />
+    <Content Include="node_modules\angularjs-datepicker\ui-bootstrap\template\datepicker\popup.html" />
+    <Content Include="node_modules\angularjs-datepicker\ui-bootstrap\template\datepicker\year.html" />
     <Content Include="node_modules\angular\angular.js" />
     <Content Include="node_modules\angular\angular.min.js" />
     <Content Include="node_modules\bootstrap-3.3.7-dist\css\bootstrap-theme.css" />
@@ -1029,6 +1055,17 @@
     <Content Include="node_modules\grunt\package.json" />
     <Content Include="node_modules\grunt\README.md" />
     <Content Include="node_modules\ui-grid\package.json" />
+    <Content Include="node_modules\angularjs-datepicker\.csslintrc" />
+    <Content Include="node_modules\angularjs-datepicker\.eslintrc" />
+    <Content Include="node_modules\angularjs-datepicker\.jscsrc" />
+    <Content Include="node_modules\angularjs-datepicker\.jshintrc" />
+    <Content Include="node_modules\angularjs-datepicker\.npmignore" />
+    <Content Include="node_modules\angularjs-datepicker\.sublime-project" />
+    <Content Include="node_modules\angularjs-datepicker\bower.json" />
+    <Content Include="node_modules\angularjs-datepicker\dist\angular-datepicker.sourcemap.map" />
+    <Content Include="node_modules\angularjs-datepicker\package.json" />
+    <Content Include="node_modules\angularjs-datepicker\README.md" />
+    <Content Include="node_modules\angularjs-datepicker\themes\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1038,6 +1075,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="scripts\App.js" />
+    <Content Include="scripts\Js\bootstrap-datepicker.js" />
+    <Content Include="scripts\Js\datepicker.js" />
+    <Content Include="scripts\Js\moment.js" />
     <Content Include="views\ItemsTracking.html" />
     <Content Include="views\ImportItems.html" />
     <Content Include="Web.config" />

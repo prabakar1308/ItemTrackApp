@@ -58,7 +58,7 @@
 
     function openQAStatus() {
 
-        var result = $filter('filter')($scope.TeamDetails, 'Java Track');
+        var result = $filter('filter')($scope.TeamDetails, 'QA Track');
 
         console.log(result);
 

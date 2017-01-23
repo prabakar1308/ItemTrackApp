@@ -61,6 +61,7 @@
                                     <th st-sort="PlannedBundle"><a>Bundle</a></th>
                                     <th><a>Title</a></th>
                                     <th><a>Status</a></th>
+                                    <th><a>Jira Status</a></th>
                                     <th><a>Dev Owner</a></th>
                                     <th><a>QA Owner</a></th>
                                     <th><a>Estimate</a></th>
@@ -77,9 +78,10 @@
                                     <td>{{row.Priority}}</td>
                                     <td>{{row.PlannedBundle}}</td>
                                     <td>{{row.Title}}</td>
-                                    <td>{{row.Status}}</td>
-                                    <td>{{row.Developer}}</td>
-                                    <td>{{row.Tester}}</td>
+                                    <td>{{row.Status.Status}}</td>
+                                    <td>{{row.JiraStatus}}</td>
+                                    <td>{{row.Developer.EmployeeName}}</td>
+                                    <td>{{row.Tester.EmployeeID}}</td>
                                     <td>
                                         <button type="button" ng-click="developerEffort(row)" class="btn btn-sm btn-primary">
                                             <i class="glyphicon glyphicon-cog">

@@ -4,14 +4,17 @@
     <title></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta charset="utf-8" />
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/angular/angular.js"></script>
     <script src="node_modules/angular-route/angular-route.js"></script>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <link href="node_modules/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="node_modules/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <link href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css" rel="stylesheet" />
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
     <script src="node_modules/Smart-Table-master/dist/smart-table.js"></script>
+    <link href="node_modules/angularjs-datepicker/dist/angular-datepicker.min.css" rel="stylesheet" />
+    <script src="node_modules/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
 
     <script src="excel_files/xlsx.full.min.js"></script>
     <script src="node_modules/ui-grid/ui-grid.min.js"></script>
@@ -24,6 +27,7 @@
     <link href="css/Menu.css" rel="stylesheet" />
     <link href="css/SmartTable.css" rel="stylesheet" />
     <script src="common_utils/Directives.js"></script>
+    <script src="scripts/Js/datepicker.js"></script>
 </head>
 <body ng-app="Tracking">
     <nav class="navbar navbar-default navbar-static-top">
@@ -121,16 +125,22 @@
                 </div>
                 <div class="col-sm-5">
                     <label>Validation</label>
-                    <input type="text" ng-model="qa.validation" /><br /><br />
-                    <label>Tested On</label>
-                    <input type="datetime" ng-model="qa.testedOn" /><br /><br />
-                    <label>Actual hours</label>
-                    <input type="number" ng-model="qa.actualHours" /><br /><br />
-                    <label>No of Rounds</label>
-                    <input type="number" ng-model="qa.rounds"/><br /><br />
-                    <label>Test cases failed</label>
-                    <input type="number" ng-model="qa.testCaseFailed" /><br /><br />
-                </div>
+                    <input type="text" ng-model="qa.validation" /><br /><br /> 
+                    <div class="row">
+                        <div class="col-sm-5"><label>Test Started on</label></div>
+                        <div class="col-sm-5"><datepicker date-format="yyyy-MM-dd">
+    <input ng-model="qa.testStartedDate" type="text" />
+</datepicker></div>
+                    </div>
+                        
+                       <br /><br />
+                        <label>Actual hours</label>
+                        <input type="number" ng-model="qa.actualHours" /><br /><br />
+                        <label>No of Rounds</label>
+                        <input type="number" ng-model="qa.rounds" /><br /><br />
+                        <label>Test cases failed</label>
+                        <input type="number" ng-model="qa.testCaseFailed" /><br /><br />
+                    </div>
                 <div class="col-sm-1"></div>              
             </div><br />
             <div class="row">

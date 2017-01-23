@@ -1,4 +1,4 @@
-﻿var Tracking = angular.module('Tracking', ['ngRoute', 'smart-table', 'ui.bootstrap', 'ui.grid']);
+﻿var Tracking = angular.module('Tracking', ['ngRoute', 'smart-table', 'ui.bootstrap', 'ui.grid','720kb.datepicker']);
 
 Tracking.factory('TrackingService', ['$http',function ($http) {
 

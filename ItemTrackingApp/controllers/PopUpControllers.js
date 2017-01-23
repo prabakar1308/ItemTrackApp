@@ -37,9 +37,10 @@ Tracking.controller('QAEffortCtrl', function ($scope, $uibModalInstance, item,te
     $scope.qa = {};
 
     console.log('teamtest');
-    console.log(team);
+    console.log(item);
 
     if (item[0] !== undefined && item[0] !== null) {
+        var startedDate = new Date(item[0].TestStartedDate.replace(/^(0?[1-9]|1[012])[\/](0?[1-9]|[12][0-9]|3[01])[\/]\d{4}$/));
         $scope.qa.jiraId = item[0].JiraId;
         $scope.qa.status = item[0].QAStatus;
         console.log($scope.qa.status);
@@ -49,8 +50,8 @@ Tracking.controller('QAEffortCtrl', function ($scope, $uibModalInstance, item,te
         $scope.qa.testCasePassed = item[0].TestCasePassed;
         $scope.qa.testCompletedDate = item[0].TestCompletedDate;
         $scope.qa.releasedDate = item[0].TestReadyDate;
-        $scope.qa.testStartedDate = item[0].TestStartedDate;
-        //$scope.qa.testedBy = item[0].TestedBy;
+        $scope.qa.testStartedDate = startedDate;
+        $scope.qa.testedBy = item[0].TestedBy;
         $scope.qa.defects = item[0].Defects;
         $scope.qa.actualHours = item[0].ActualHours;
         $scope.qa.comments = item[0].Comments;
@@ -59,7 +60,7 @@ Tracking.controller('QAEffortCtrl', function ($scope, $uibModalInstance, item,te
 
     if (team !== undefined && team !== null) {
         $scope.teamDetails = team;
-        $scope.qa.testedBy = 'M1022169dew';
+       // $scope.qa.testedBy = 'M1022169dew';
     }
 
     $scope.save = function () {
@@ -69,6 +70,7 @@ Tracking.controller('QAEffortCtrl', function ($scope, $uibModalInstance, item,te
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+
 });
 
 
