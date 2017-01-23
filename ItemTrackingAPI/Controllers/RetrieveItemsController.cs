@@ -37,12 +37,43 @@ namespace ItemTrackingAPI.Controllers
         [ResponseType(typeof(List<TBL_JIRA_ITEMS>))]
         public IHttpActionResult GetTBL_JIRA_ITEMS(int releaseId,int trackId,bool releaseFilter, bool trackFilter)
         {
-            List<TBL_JIRA_ITEMS> items = null;
+
             if (releaseFilter && trackFilter)
             {
-               items = (from c in db.TBL_JIRA_ITEMS
+              var items = (from c in db.TBL_JIRA_ITEMS
                              where c.ReleaseID == releaseId && c.TrackID == trackId
-                             select new {
+                           select new {
+                               JiraID = c.JiraID,
+                               ReleaseID = c.ReleaseID,
+                               TrackID = c.TrackID,
+                               Application = c.Application,
+                               Module = c.Module,
+                               Priority = c.Priority,
+                               Title = c.Title,
+                               Status = c.TBK_DEV_STATUS,
+                               JiraStatus = c.JiraStatus,
+                               EstimatedBy = c.TBL_TEAM,
+                               PlannedBundle = c.PlannedBundle,
+                               Developer = c.TBL_TEAM1,
+                               Reviewer = c.TBL_TEAM2,
+                               Tester = c.TBL_TEAM3,
+                               Analysis = c.Analysis,
+                               Coding = c.Coding,
+                               UnitTesting = c.UnitTesting,
+                               DeveloperEffort = c.DeveloperEffort,
+                               LeadEffort = c.LeadEffort,
+                               DevEstimatedEffort = c.DevEstimatedEffort,
+                               QAEstimatedEffort = c.QAEstimatedEffort,
+                               TotalEffort = c.TotalEffort
+                           }).ToList();
+
+                return Ok(items);
+            }
+            else if (!releaseFilter && trackFilter) {
+                var items = (from c in db.TBL_JIRA_ITEMS
+                             where c.TrackID == trackId
+                             select new
+                             {
                                  JiraID = c.JiraID,
                                  ReleaseID = c.ReleaseID,
                                  TrackID = c.TrackID,
@@ -50,12 +81,13 @@ namespace ItemTrackingAPI.Controllers
                                  Module = c.Module,
                                  Priority = c.Priority,
                                  Title = c.Title,
-                                 Status = c.Status,
-                                 EstimatedBy = c.TBL_TEAM.EmployeeName,
+                                 Status = c.TBK_DEV_STATUS,
+                                 JiraStatus = c.JiraStatus,
+                                 EstimatedBy = c.TBL_TEAM,
                                  PlannedBundle = c.PlannedBundle,
-                                 Developer = c.TBL_TEAM1.EmployeeName,
-                                 Reviewer = c.TBL_TEAM2.EmployeeName,
-                                 Tester = c.TBL_TEAM3.EmployeeName,
+                                 Developer = c.TBL_TEAM1,
+                                 Reviewer = c.TBL_TEAM2,
+                                 Tester = c.TBL_TEAM3,
                                  Analysis = c.Analysis,
                                  Coding = c.Coding,
                                  UnitTesting = c.UnitTesting,
@@ -64,25 +96,71 @@ namespace ItemTrackingAPI.Controllers
                                  DevEstimatedEffort = c.DevEstimatedEffort,
                                  QAEstimatedEffort = c.QAEstimatedEffort,
                                  TotalEffort = c.TotalEffort
-                             }).ToList<TBL_JIRA_ITEMS>();
-            }
-            else if (!releaseFilter && trackFilter) {
-                items = db.TBL_JIRA_ITEMS.Where(a => a.TrackID == trackId).ToList();
+                             }).ToList();
+                return Ok(items);
             }
             else if (releaseFilter && !trackFilter)
             {
-                items = db.TBL_JIRA_ITEMS.Where(a => a.ReleaseID == releaseId).ToList();
+                var items = (from c in db.TBL_JIRA_ITEMS
+                             where c.ReleaseID == releaseId
+                             select new
+                             {
+                                 JiraID = c.JiraID,
+                                 ReleaseID = c.ReleaseID,
+                                 TrackID = c.TrackID,
+                                 Application = c.Application,
+                                 Module = c.Module,
+                                 Priority = c.Priority,
+                                 Title = c.Title,
+                                 Status = c.TBK_DEV_STATUS,
+                                 JiraStatus = c.JiraStatus,
+                                 EstimatedBy = c.TBL_TEAM,
+                                 PlannedBundle = c.PlannedBundle,
+                                 Developer = c.TBL_TEAM1,
+                                 Reviewer = c.TBL_TEAM2,
+                                 Tester = c.TBL_TEAM3,
+                                 Analysis = c.Analysis,
+                                 Coding = c.Coding,
+                                 UnitTesting = c.UnitTesting,
+                                 DeveloperEffort = c.DeveloperEffort,
+                                 LeadEffort = c.LeadEffort,
+                                 DevEstimatedEffort = c.DevEstimatedEffort,
+                                 QAEstimatedEffort = c.QAEstimatedEffort,
+                                 TotalEffort = c.TotalEffort
+                             }).ToList();
+                return Ok(items);
             }
             else
             {
-                items = db.TBL_JIRA_ITEMS.ToList();
-            }
-            if (items == null)
-            {
-                return NotFound();
+                var items = (from c in db.TBL_JIRA_ITEMS
+                             select new
+                             {
+                                 JiraID = c.JiraID,
+                                 ReleaseID = c.ReleaseID,
+                                 TrackID = c.TrackID,
+                                 Application = c.Application,
+                                 Module = c.Module,
+                                 Priority = c.Priority,
+                                 Title = c.Title,
+                                 Status = c.TBK_DEV_STATUS,
+                                 JiraStatus = c.JiraStatus,
+                                 EstimatedBy = c.TBL_TEAM,
+                                 PlannedBundle = c.PlannedBundle,
+                                 Developer = c.TBL_TEAM1,
+                                 Reviewer = c.TBL_TEAM2,
+                                 Tester = c.TBL_TEAM3,
+                                 Analysis = c.Analysis,
+                                 Coding = c.Coding,
+                                 UnitTesting = c.UnitTesting,
+                                 DeveloperEffort = c.DeveloperEffort,
+                                 LeadEffort = c.LeadEffort,
+                                 DevEstimatedEffort = c.DevEstimatedEffort,
+                                 QAEstimatedEffort = c.QAEstimatedEffort,
+                                 TotalEffort = c.TotalEffort
+                             }).ToList();
+                return Ok(items);
             }
 
-            return Ok(items);
         }
 
         [HttpGet]

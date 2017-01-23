@@ -35,6 +35,7 @@ namespace ItemTrackingAPI.Models
         public Nullable<decimal> DevEstimatedEffort { get; set; }
         public Nullable<decimal> QAEstimatedEffort { get; set; }
         public Nullable<decimal> TotalEffort { get; set; }
+        public string JiraStatus { get; set; }
     
         public virtual TBK_DEV_STATUS TBK_DEV_STATUS { get; set; }
         public virtual TBL_RELEASE TBL_RELEASE { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BacklogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BacklogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="TBK_DEV_STATUS">
           <Key>
             <PropertyRef Name="StatusCode" />
@@ -23,6 +23,7 @@
           <Property Name="Module" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Priority" Type="nvarchar" MaxLength="2" Nullable="false" />
           <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="JiraStatus" Type="nvarchar" MaxLength="50" />
           <Property Name="Status" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="EstimatedBy" Type="nvarchar" MaxLength="50" />
           <Property Name="PlannedBundle" Type="nvarchar" MaxLength="50" />
@@ -257,8 +258,7 @@ warning 6002: The table/view 'Backlog.dbo.TBL_QA_DETAILS' does not have a primar
             <End Role="TBL_QA_DETAILS" EntitySet="TBL_QA_DETAILS" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BacklogModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -302,6 +302,7 @@ warning 6002: The table/view 'Backlog.dbo.TBL_QA_DETAILS' does not have a primar
           <NavigationProperty Name="TBL_TEAM2" Relationship="Self.FK_TBL_JIRA_ITEMS_TBL_TEAM2" FromRole="TBL_JIRA_ITEMS" ToRole="TBL_TEAM" />
           <NavigationProperty Name="TBL_TEAM3" Relationship="Self.FK_TBL_JIRA_ITEMS_TBL_TEAM3" FromRole="TBL_JIRA_ITEMS" ToRole="TBL_TEAM" />
           <NavigationProperty Name="TBL_TRACK" Relationship="Self.FK_TBL_JIRA_ITEMS_TBL_TRACK" FromRole="TBL_JIRA_ITEMS" ToRole="TBL_TRACK" />
+          <Property Name="JiraStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TBL_QA_STATUS">
           <Key>
@@ -531,6 +532,7 @@ warning 6002: The table/view 'Backlog.dbo.TBL_QA_DETAILS' does not have a primar
           <EntitySetMapping Name="TBL_JIRA_ITEMS">
             <EntityTypeMapping TypeName="BacklogModel.TBL_JIRA_ITEMS">
               <MappingFragment StoreEntitySet="TBL_JIRA_ITEMS">
+                <ScalarProperty Name="JiraStatus" ColumnName="JiraStatus" />
                 <ScalarProperty Name="JiraID" ColumnName="JiraID" />
                 <ScalarProperty Name="ReleaseID" ColumnName="ReleaseID" />
                 <ScalarProperty Name="TrackID" ColumnName="TrackID" />
