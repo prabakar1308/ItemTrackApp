@@ -2,7 +2,7 @@
 
     $scope.dev = {};
 
-    if (item !== undefined && item !== null) {
+    if (item !== undefined && item !== null) {  
         $scope.dev.jiraId = item.JiraID;
         $scope.dev.analysis = item.Analysis;
         $scope.dev.coding = item.Coding;
