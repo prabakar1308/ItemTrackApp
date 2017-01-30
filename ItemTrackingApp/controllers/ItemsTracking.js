@@ -57,7 +57,7 @@
     }
 
     function openQAStatus() {
-
+        console.log($scope.TeamDetails);
         var result = $filter('filter')($scope.TeamDetails, 'QA Track');
 
         console.log(result);
@@ -122,6 +122,7 @@
     }
 
     $scope.developerEffort = function (row) {
+        var result = $filter('filter')($scope.TeamDetails, {Track:'Java Track'} && {Track:'MS Track'});
         var modalInstance = $uibModal.open({
             templateUrl: 'DeveloperEffort.html',
             controller: 'DeveloperEffortCtrl',
@@ -129,6 +130,9 @@
             resolve: {
                 item: function () {
                     return row;
+                },
+                team: function () {
+                    return $scope.TeamDetails;
                 }
             }
         });

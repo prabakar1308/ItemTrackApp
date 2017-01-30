@@ -83,7 +83,8 @@
                             <label>Total Effort</label>
                             <input type="number" ng-model="dev.totalEffort" ng-disabled="true" /><br /><br /><br />
                             <label>Estimated By</label>
-                            <input type="text" ng-model="dev.estimatedBy" />
+                            <!--<input type="text" ng-model="dev.estimatedBy" />-->
+                            <select ng-model="dev.estimatedBy.EmployeeID" ng-options="x.EmployeeID as x.EmployeeName for x in teamDetails"></select><br /><br />
                         </div>
                         <div class="col-sm-1"></div>
                     </div>
@@ -114,9 +115,9 @@
                     <label>Status</label>
                     <input type="text" ng-model="qa.status" /><br /><br />
                     <label>Released on</label>
-                    <input type="datetime" ng-model="qa.releasedDate" /><br /><br />
+                    <input type="date" ng-model="qa.releasedDate" class="no-spin"/><br /><br />
                     <label>Test Completed On</label>
-                    <input type="datetime" ng-model="qa.testCompletedDate" /><br /><br />
+                    <input type="date" ng-model="qa.testCompletedDate" class="no-spin"/><br /><br />
                     <label>Defects</label>
                     <input type="number" ng-model="qa.defects" /><br /><br />
                     <label>Test Cases passed</label>
@@ -126,14 +127,8 @@
                 <div class="col-sm-5">
                     <label>Validation</label>
                     <input type="text" ng-model="qa.validation" /><br /><br /> 
-                    <div class="row">
-                        <div class="col-sm-5"><label>Test Started on</label></div>
-                        <div class="col-sm-5"><datepicker date-format="yyyy-MM-dd">
-    <input ng-model="qa.testStartedDate" type="text" />
-</datepicker></div>
-                    </div>
-                        
-                       <br /><br />
+                   <label>Test Started on</label>
+                    <input ng-model="qa.testStartedDate" type="date" class="no-spin"/><br /><br />
                         <label>Actual hours</label>
                         <input type="number" ng-model="qa.actualHours" /><br /><br />
                         <label>No of Rounds</label>

@@ -1,7 +1,9 @@
-﻿Tracking.controller('DeveloperEffortCtrl', function ($scope, $uibModalInstance, item) {
+﻿Tracking.controller('DeveloperEffortCtrl', function ($scope, $uibModalInstance, item,team) {
 
     $scope.dev = {};
-
+    console.log(team);
+    console.log(item);
+    $scope.teamDetails = [];
     if (item !== undefined && item !== null) {  
         $scope.dev.jiraId = item.JiraID;
         $scope.dev.analysis = item.Analysis;
@@ -23,6 +25,13 @@
         $scope.dev.totalEffort = ($scope.dev.devEstimated + $scope.dev.qaEffort);
     });
 
+    if (team !== undefined && team !== null) {
+        angular.forEach(team, function (data) {
+            if (data.Track == 'MS Track' || data.Track == 'Java Track')
+                $scope.teamDetails.push(data);
+        });
+    }
+
     $scope.save = function () {
         $uibModalInstance.close($scope.dev);
     };
@@ -40,7 +49,9 @@ Tracking.controller('QAEffortCtrl', function ($scope, $uibModalInstance, item,te
     console.log(item);
 
     if (item[0] !== undefined && item[0] !== null) {
-        var startedDate = new Date(item[0].TestStartedDate.replace(/^(0?[1-9]|1[012])[\/](0?[1-9]|[12][0-9]|3[01])[\/]\d{4}$/));
+        //var startedDate = new Date(item[0].TestStartedDate.replace(/^(0?[1-9]|1[012])[\/](0?[1-9]|[12][0-9]|3[01])[\/]\d{4}$/));
+        var startedDate = new Date(item[0].TestStartedDate);
+        var releaseDate = new Date(item[0].TestReadyDate);
         $scope.qa.jiraId = item[0].JiraId;
         $scope.qa.status = item[0].QAStatus;
         console.log($scope.qa.status);
@@ -49,7 +60,7 @@ Tracking.controller('QAEffortCtrl', function ($scope, $uibModalInstance, item,te
         $scope.qa.testCaseFailed = item[0].TestCaseFailed;
         $scope.qa.testCasePassed = item[0].TestCasePassed;
         $scope.qa.testCompletedDate = item[0].TestCompletedDate;
-        $scope.qa.releasedDate = item[0].TestReadyDate;
+        $scope.qa.releasedDate = releaseDate;
         $scope.qa.testStartedDate = startedDate;
         $scope.qa.testedBy = item[0].TestedBy;
         $scope.qa.defects = item[0].Defects;
